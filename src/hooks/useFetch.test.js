@@ -12,8 +12,8 @@ describe("custom useFetch Hook", () => {
     expect(response).toBeNull();
     expect(doFetch).toBeDefined();
   });
-  
-  it("should render result after successfull fetch", async () => {
+
+  it("should render success result after successfull fetch", async () => {
     const mockResponse = {
       data: [{ id: 1, text: "foo", isCompleted: false }],
     };
@@ -28,6 +28,24 @@ describe("custom useFetch Hook", () => {
     expect(error).toBeNull();
     expect(isLoading).toEqual(false);
     expect(response).toEqual(mockResponse.data);
+    expect(doFetch).toBeDefined();
+  });
+
+  it("should render error result after successfull fetch", async () => {
+    const mockResponse = {
+      response: { data: "Server error" },
+    };
+    vi.spyOn(axios, "request").mockRejectedValue(mockResponse);
+    const { result } = renderHook(() => useFetch("/todos"));
+
+    await act(async () => {
+      result.current[1]();
+    });
+
+    const [{ response, isLoading, error }, doFetch] = result.current;
+    expect(error).toEqual(mockResponse.response.data);
+    expect(isLoading).toEqual(false);
+    expect(response).toEqual(null);
     expect(doFetch).toBeDefined();
   });
 });
