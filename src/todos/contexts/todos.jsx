@@ -72,7 +72,7 @@ export const changeFilter = async (dispatch, filter) => {
 
 export const getTodos = async (dispatch) => {
   try {
-    const response = await axios.get("http://localhost:3004/todos");
+    const response = await axios.get("http://localhost:3000/todos");
     dispatch({
       type: "getTodos",
       payload: response.data,

@@ -1,9 +1,11 @@
-import Todos from "./todos/components/Todos";
+import Posts from "./posts/Posts";
+// import Todos from "./todos/components/Todos";
 
 const App = () => {
   return (
     <div>
-      <Todos />
+      {/* <Todos /> */}
+      <Posts />
     </div>
   );
 };
