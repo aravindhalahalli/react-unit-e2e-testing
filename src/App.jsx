@@ -1,7 +1,11 @@
+import Todos from "./todos/components/Todos";
+
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <div>
+      <Todos />
+    </div>
+  );
+};
 
 export default App;

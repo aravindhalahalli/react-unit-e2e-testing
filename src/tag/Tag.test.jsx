@@ -23,7 +23,6 @@ describe("Tag component", () => {
     // use an findAllByTestId when using an async and await
     // const tags = await screen.getAllByTestId("tag");
     const tags = await screen.findAllByTestId("tag");
-    screen.debug();
     expect(tags).toHaveLength(2);
     expect(tags[0]).toHaveTextContent("React");
   });
@@ -40,7 +39,6 @@ describe("Tag component", () => {
     // use an findAllByTestId when using an async and await
     // const tags = await screen.getAllByTestId("tag");
     const tags = await screen.findAllByTestId("tag");
-    screen.debug();
     expect(tags).toHaveLength(2);
     expect(tags[0]).toHaveTextContent("Vue Js");
   });
