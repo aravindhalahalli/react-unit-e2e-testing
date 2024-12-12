@@ -85,7 +85,7 @@ export const getTodos = async (dispatch) => {
 export const addTodo = async (dispatch, todoToCreate) => {
   try {
     const response = await axios.post(
-      "http://localhost:3004/todos",
+      "http://localhost:3000/todos",
       todoToCreate
     );
     dispatch({
@@ -100,7 +100,7 @@ export const addTodo = async (dispatch, todoToCreate) => {
 export const updateTodo = async (dispatch, todoId, fieldsToUpdate) => {
   try {
     const response = await axios.put(
-      `http://localhost:3004/todos/${todoId}`,
+      `http://localhost:3000/todos/${todoId}`,
       fieldsToUpdate
     );
     dispatch({
@@ -114,7 +114,7 @@ export const updateTodo = async (dispatch, todoId, fieldsToUpdate) => {
 
 export const removeTodo = async (dispatch, todoId) => {
   try {
-    await axios.delete(`http://localhost:3004/todos/${todoId}`);
+    await axios.delete(`http://localhost:3000/todos/${todoId}`);
     dispatch({
       type: "removeTodo",
       payload: todoId,
@@ -126,7 +126,7 @@ export const removeTodo = async (dispatch, todoId) => {
 
 export const toggleAll = async (dispatch, isCompleted, todos) => {
   const promises = todos.map((todo) => {
-    return axios.put(`http://localhost:3004/todos/${todo.id}`, {
+    return axios.put(`http://localhost:3000/todos/${todo.id}`, {
       text: todo.text,
       isCompleted,
     });

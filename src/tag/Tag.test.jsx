@@ -7,7 +7,7 @@ import axios from "axios";
 
 describe("Tag component", () => {
   const server = setupServer(
-    http.get("http://localhost:3004/tags", () => {
+    http.get("http://localhost:3000/tags", () => {
       return HttpResponse.json([
         { id: 1, name: "React" },
         { id: 2, name: "Typescript" },
