@@ -4,6 +4,12 @@ import { TodosContext } from "../contexts/todos";
 import Footer from "./Footer";
 import userEvent from "@testing-library/user-event";
 
+const customRender = (ui, providerProps) => {
+  return render(
+    <TodosContext.Provider value={providerProps}>{ui}</TodosContext.Provider>
+  );
+};
+
 describe("Footer", () => {
   const mockDispatch = vi.fn();
   describe("component visibility", () => {
@@ -12,11 +18,12 @@ describe("Footer", () => {
         todos: [],
         filter: "all",
       };
-      render(
-        <TodosContext.Provider value={[state, mockDispatch, {}]}>
-          <Footer />
-        </TodosContext.Provider>
-      );
+      customRender(<Footer />, [state, mockDispatch, {}]);
+      //   render(
+      //     <TodosContext.Provider value={[state, mockDispatch, {}]}>
+      //       <Footer />
+      //     </TodosContext.Provider>
+      //   );
       expect(screen.getByTestId("footer")).toHaveClass("hidden");
     });
 
@@ -25,11 +32,12 @@ describe("Footer", () => {
         todos: [{ id: "1", text: "foo", isCompleted: false }],
         filter: "all",
       };
-      render(
-        <TodosContext.Provider value={[state, mockDispatch, {}]}>
-          <Footer />
-        </TodosContext.Provider>
-      );
+      customRender(<Footer />, [state, mockDispatch, {}]);
+    //   render(
+    //     <TodosContext.Provider value={[state, mockDispatch, {}]}>
+    //       <Footer />
+    //     </TodosContext.Provider>
+    //   );
       expect(screen.getByTestId("footer")).not.toHaveClass("hidden");
     });
   });
@@ -40,11 +48,12 @@ describe("Footer", () => {
         todos: [{ id: "1", text: "foo", isCompleted: false }],
         filter: "all",
       };
-      render(
-        <TodosContext.Provider value={[state, mockDispatch, {}]}>
-          <Footer />
-        </TodosContext.Provider>
-      );
+      customRender(<Footer />, [state, mockDispatch, {}]);
+    //   render(
+    //     <TodosContext.Provider value={[state, mockDispatch, {}]}>
+    //       <Footer />
+    //     </TodosContext.Provider>
+    //   );
       expect(screen.getByTestId("todoCount")).toHaveTextContent("1 item left");
     });
 
@@ -56,11 +65,12 @@ describe("Footer", () => {
         ],
         filter: "all",
       };
-      render(
-        <TodosContext.Provider value={[state, mockDispatch, {}]}>
-          <Footer />
-        </TodosContext.Provider>
-      );
+      customRender(<Footer />, [state, mockDispatch, {}]);
+    //   render(
+    //     <TodosContext.Provider value={[state, mockDispatch, {}]}>
+    //       <Footer />
+    //     </TodosContext.Provider>
+    //   );
       expect(screen.getByTestId("todoCount")).toHaveTextContent("2 items left");
     });
   });
@@ -71,11 +81,12 @@ describe("Footer", () => {
         todos: [{ id: "1", text: "foo", isCompleted: false }],
         filter: "all",
       };
-      render(
-        <TodosContext.Provider value={[state, mockDispatch, {}]}>
-          <Footer />
-        </TodosContext.Provider>
-      );
+      customRender(<Footer />, [state, mockDispatch, {}]);
+    //   render(
+    //     <TodosContext.Provider value={[state, mockDispatch, {}]}>
+    //       <Footer />
+    //     </TodosContext.Provider>
+    //   );
       const filterLinks = screen.getAllByTestId("filterLink");
       expect(filterLinks[0]).toHaveClass("selected");
     });
